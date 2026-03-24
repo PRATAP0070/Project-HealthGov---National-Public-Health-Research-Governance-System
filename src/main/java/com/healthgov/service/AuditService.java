@@ -1,20 +1,21 @@
 package com.healthgov.service;
 
-import java.time.LocalDate;
 import java.util.List;
 
+import com.healthgov.dto.AuditCreateRequest;
+import com.healthgov.dto.AuditUpdateRequest;
 import com.healthgov.model.Audit;
 
 public interface AuditService {
 
-	List<Audit> getAllForOfficer(Long officerId);
-	
-	Audit getLatestForOfficerOrThrow(Long officerId);
+	List<Audit> getAllAudits();
+	Audit createAudit(AuditCreateRequest request);
 
-	Audit scheduleAudit(Long officerId, String scope, LocalDate date);
+	Audit updateAudit(Long auditId, AuditUpdateRequest request);
 
-	Audit recordFindings(Long auditId, String findings, String newStatus);
+	Audit updateStatus(Long auditId, String status);
 
-	Audit deleteAudit(Long auditId);
+	Audit updateFindings(Long auditId, String findings);
 
+	Audit getAudit(Long auditId);
 }

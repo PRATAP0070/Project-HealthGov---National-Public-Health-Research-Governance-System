@@ -1,5 +1,4 @@
 package com.healthgov.service;
 
-public class AuditLogServiceImpl {
-
+public class AuditLogServiceImpl{
 }

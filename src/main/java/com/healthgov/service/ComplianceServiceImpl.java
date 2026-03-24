@@ -21,8 +21,10 @@ import com.healthgov.repository.GrantsRepository;
 import com.healthgov.repository.HealthProgramRepository;
 import com.healthgov.repository.ResearchProjectRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
-@Transactional
+@RequiredArgsConstructor
 public class ComplianceServiceImpl implements ComplianceService {
 
 	private final ComplianceRecordRepository complianceRepo;
@@ -31,14 +33,6 @@ public class ComplianceServiceImpl implements ComplianceService {
 	private final GrantsRepository grantsRepo;
 
 	private static final Logger log = LoggerFactory.getLogger(ComplianceServiceImpl.class);
-
-	public ComplianceServiceImpl(ComplianceRecordRepository complianceRepo, HealthProgramRepository healthProgramRepo,
-			ResearchProjectRepository researchProjectRepo, GrantsRepository grantsRepo) {
-		this.complianceRepo = complianceRepo;
-		this.healthProgramRepo = healthProgramRepo;
-		this.researchProjectRepo = researchProjectRepo;
-		this.grantsRepo = grantsRepo;
-	}
 
 	@Override
 	@Transactional(readOnly = true)

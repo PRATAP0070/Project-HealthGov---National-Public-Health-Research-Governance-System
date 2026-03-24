@@ -19,12 +19,7 @@ public class GlobalException {
 	@ExceptionHandler(ResourceNotFoundException.class)
 	public ResponseEntity<ApiError> handleNotFound(ResourceNotFoundException ex, HttpServletRequest req) {
 		ApiError body = ApiError.builder().timestamp(Instant.now()).status(HttpStatus.NOT_FOUND.value())
-				.error(HttpStatus.NOT_FOUND.getReasonPhrase()).code("TARGET_NOT_FOUND").message(ex.getMessage()) // e.g.,
-																													// "Target
-																													// not
-																													// found:
-																													// PROGRAM
-																													// id=1"
+				.error(HttpStatus.NOT_FOUND.getReasonPhrase()).code("TARGET_NOT_FOUND").message(ex.getMessage()) // id=1"
 				.path(req.getRequestURI()).build();
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
 	}
@@ -37,9 +32,17 @@ public class GlobalException {
 		return ResponseEntity.badRequest().body(body);
 	}
 
+	@ExceptionHandler(AuditRequestException.class)
+	public ResponseEntity<ApiError> handleAuditBadRequest(AuditRequestException ex, HttpServletRequest req) {
+		ApiError body = ApiError.builder().timestamp(Instant.now()).status(HttpStatus.BAD_REQUEST.value())
+				.error(HttpStatus.BAD_REQUEST.getReasonPhrase()).code("BAD_REQUEST").message(ex.getMessage())
+				.path(req.getRequestURI()).build();
+		return ResponseEntity.badRequest().body(body);
+	}
+
 	@ExceptionHandler(MethodArgumentTypeMismatchException.class)
 	public ResponseEntity<ApiError> handleTypeMismatch(MethodArgumentTypeMismatchException ex, HttpServletRequest req) {
-		String param = ex.getName(); // usually "type" or "entityId"
+		String param = ex.getName();
 		Object value = ex.getValue();
 
 		String message;
