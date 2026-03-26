@@ -18,4 +18,6 @@ public interface AuditService {
 	Audit updateFindings(Long auditId, String findings);
 
 	Audit getAudit(Long auditId);
+	
+	List<Audit> getAllAuditsByOfficer(Long officerId);
 }

@@ -74,5 +74,11 @@ public class AuditController {
 		return ResponseEntity.ok(auditService.getAllAudits());
 	}
 	
+	@GetMapping("/byOfficer/{id}")
+	public ResponseEntity<List<Audit>> getAllAuditsByOfficer(@PathVariable("id") Long officerId)
+	{
+		return ResponseEntity.ok(auditService.getAllAuditsByOfficer(officerId));
+	}
+	
 	
 }

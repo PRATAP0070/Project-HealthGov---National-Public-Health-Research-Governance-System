@@ -45,6 +45,7 @@ public class AuditServiceImpl implements AuditService {
 		return auditRepo.findAll();
 	}
 	
+	
 	@Override
 	public Audit createAudit(AuditCreateRequest request) {
 
@@ -90,6 +91,7 @@ public class AuditServiceImpl implements AuditService {
 	    }
 	}
 	
+	
 
 	@Override
 	public Audit updateAudit(Long auditId, AuditUpdateRequest request) {
@@ -128,6 +130,16 @@ public class AuditServiceImpl implements AuditService {
 
 		return saved;
 	}
+	
+	@Override
+	public List<Audit> getAllAuditsByOfficer(Long officerId) {
+		
+		if(officerId==null)
+			throw new AuditRequestException("Officer Id is required.");
+		
+		return auditRepo.findByOfficer_UserId(officerId);
+	}
+
 
 	@Override
 	public Audit updateFindings(Long auditId, String findings) {
@@ -174,6 +186,7 @@ public class AuditServiceImpl implements AuditService {
 					"Invalid status. Allowed: SCHEDULED, IN_REVIEW, COMPLETED, FOLLOW_UP_REQUIRED.");
 		}
 	}
+	
 
 	private void validateAndEnsureScopeTargetExists(String scope) {
 		String[] parts = scope.split(":", 2);
@@ -208,4 +221,5 @@ public class AuditServiceImpl implements AuditService {
 		}
 	}
 
+	
 }
