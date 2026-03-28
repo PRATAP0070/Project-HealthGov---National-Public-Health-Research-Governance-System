@@ -39,7 +39,7 @@ public class AuditServiceImpl implements AuditService {
 	private final GrantsRepository grantsRepo;
 	private static final Logger log = LoggerFactory.getLogger(AuditServiceImpl.class);
 
-	
+
 	@Override
 	public List<Audit> getAllAudits() {
 		return auditRepo.findAll();
@@ -55,7 +55,7 @@ public class AuditServiceImpl implements AuditService {
 
 	    String scope = request.getScope().trim();
 	    validateAndEnsureScopeTargetExists(scope);
-
+        
 	    // DUPLICATE CHECK (officer + scope)
 	    if (auditRepo.existsByOfficer_UserIdAndScopeIgnoreCase(officer.getUserId(), scope)) {
 	        throw new AuditRequestException(
@@ -99,7 +99,7 @@ public class AuditServiceImpl implements AuditService {
 			throw new AuditRequestException("auditId is required.");
 
 		Audit existing = auditRepo.findById(auditId)
-				.orElseThrow(() -> new ResourceNotFoundException("Audit not found: id=" + auditId));
+				.orElseThrow(() -> new ResourceNotFoundException(" Audit not found: id= " + auditId));
 
 		AuditStatus status = parseStatusOrThrow(request.getStatus().toString());
 
@@ -109,7 +109,7 @@ public class AuditServiceImpl implements AuditService {
 
 		Audit saved = auditRepo.save(existing);
 
-		log.info("AUDIT_UPDATE", "Audit(auditId=" + saved.getAuditId() + ", status=" + saved.getStatus() + ")");
+		log.info("Audit Record updated Successfully {}",saved);
 
 		return saved;
 	}
@@ -126,7 +126,7 @@ public class AuditServiceImpl implements AuditService {
 		existing.setStatus(parsed);
 		Audit saved = auditRepo.save(existing);
 
-		log.info("AUDIT_UPDATE_STATUS", "Audit(auditId=" + saved.getAuditId() + ", status=" + saved.getStatus() + ")");
+		log.info("AUDIT Status updated Successfully. {}",saved);
 
 		return saved;
 	}
@@ -154,7 +154,7 @@ public class AuditServiceImpl implements AuditService {
 		existing.setFindings(findings.trim());
 		Audit saved = auditRepo.save(existing);
 
-		log.info("AUDIT_UPDATE_FINDINGS", "Audit(auditId=" + saved.getAuditId() + ")");
+		log.info("AUDIT findings updated Successfully {}",saved);
 
 		return saved;
 	}
@@ -164,15 +164,12 @@ public class AuditServiceImpl implements AuditService {
 	public Audit getAudit(Long auditId) {
 		if (auditId == null)
 			throw new AuditRequestException("auditId is required.");
+		
+		log.info("Found Auidt in the Database with ID {}",auditId);
 		return auditRepo.findById(auditId)
 				.orElseThrow(() -> new ResourceNotFoundException("Audit not found: id=" + auditId));
 	}
 
-	private AuditStatus parseStatusOrDefault(String status) {
-		if (status == null || status.isBlank())
-			return AuditStatus.SCHEDULED;
-		return parseStatusOrThrow(status);
-	}
 
 	private AuditStatus parseStatusOrThrow(String status) {
 		if (status == null || status.isBlank()) {

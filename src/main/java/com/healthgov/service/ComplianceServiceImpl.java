@@ -37,6 +37,7 @@ public class ComplianceServiceImpl implements ComplianceService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<ComplianceRecord> getAllComplianceRecords() {
+		log.info("Retrived All Compliance Records form the table.");
 		return complianceRepo.findAll();
 	}
 
@@ -46,8 +47,10 @@ public class ComplianceServiceImpl implements ComplianceService {
 		validateTypeAndEntityId(type, entityId);
 		ensureTargetExists(type, entityId);
 
-		return complianceRepo.findOneByEntityIdAndType(entityId, type).orElseThrow(() -> new ResourceNotFoundException(
-				"Compliance record not found for type=" + type + " and entityId=" + entityId));
+		ComplianceRecord record=complianceRepo.findOneByEntityIdAndType(entityId, type)
+				.orElseThrow(() -> new ResourceNotFoundException("Compliance record not found for type= " + type + " and entityId=" + entityId));
+		log.info("Executed Get Compliance Record By Id function : {}",record);
+		return record;
 	}
 
 	@Override
@@ -63,14 +66,14 @@ public class ComplianceServiceImpl implements ComplianceService {
 					+ " and entityId=" + request.getEntityId());
 		}
 
-		ComplianceRecord record = new ComplianceRecord();
-		record.setType(request.getType());
-		record.setEntityId(request.getEntityId());
-		record.setResult(parseResultOrThrow(request.getResult()));
-		record.setDate(normalizeDate(request.getDate()));
-		record.setNotes(request.getNotes().trim());
+		ComplianceRecord compRecord = new ComplianceRecord();
+		compRecord.setType(request.getType());
+		compRecord.setEntityId(request.getEntityId());
+		compRecord.setResult(parseResultOrThrow(request.getResult()));
+		compRecord.setDate(normalizeDate(request.getDate()));
+		compRecord.setNotes(request.getNotes().trim());
 
-		ComplianceRecord saved = complianceRepo.save(record);
+		ComplianceRecord saved = complianceRepo.save(compRecord);
 
 		log.info("Created ComplianceRecord id={} type={} entityId={}", saved.getComplianceId(), saved.getType(),
 				saved.getEntityId());
@@ -116,7 +119,7 @@ public class ComplianceServiceImpl implements ComplianceService {
 
 		ComplianceRecord saved = complianceRepo.save(existing);
 
-		log.info("Compliance Record Updated with new Result");
+		log.info("Compliance Record Updated with new Result : {}",saved);
 
 		return saved;
 	}
@@ -134,7 +137,7 @@ public class ComplianceServiceImpl implements ComplianceService {
 
 		ComplianceRecord saved = complianceRepo.save(existing);
 
-		log.info("Compliance Notes Updates Successfully..");
+		log.info("Compliance Notes Updates Successfully.. {}",saved);
 
 		return saved;
 	}
@@ -148,10 +151,13 @@ public class ComplianceServiceImpl implements ComplianceService {
 				.orElseThrow(() -> new ResourceNotFoundException("Compliance record not found with ID:" + Id));
 
 		complianceRepo.deleteById(Id);
+		log.info("Deleted Compliance Record form the table : {}",existing);
 		return existing;
 	}
 
 	private void validateTypeAndEntityId(ComplianceType type, Long entityId) {
+		
+		log.info("Validating the compliance type before updatring the status");
 		if (type == null)
 			throw new ComplianceRequestException("type is required (PROGRAM/PROJECT/GRANT).");
 		if (entityId == null)
@@ -163,6 +169,7 @@ public class ComplianceServiceImpl implements ComplianceService {
 	}
 
 	private LocalDate normalizeDate(LocalDate date) {
+		log.info("Data Validation Invoked");
 		LocalDate effective = (date != null) ? date : LocalDate.now();
 		if (effective.isAfter(LocalDate.now())) {
 			throw new ComplianceRequestException("date cannot be in the future.");
@@ -171,6 +178,7 @@ public class ComplianceServiceImpl implements ComplianceService {
 	}
 
 	private ComplianceResult parseResultOrThrow(String result) {
+		log.info("Validating the compliance result based on the enums");
 		try {
 			return ComplianceResult.valueOf(result.trim().toUpperCase());
 		} catch (IllegalArgumentException ex) {
@@ -179,6 +187,7 @@ public class ComplianceServiceImpl implements ComplianceService {
 	}
 
 	private void ensureTargetExists(ComplianceType type, Long entityId) {
+		log.info("Validating the Entity ID and It's Type pair in respective table");
 		boolean exists;
 		switch (type) {
 		case PROGRAM -> exists = healthProgramRepo.existsById(entityId);

@@ -90,6 +90,7 @@ public class ComplianceController {
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<ComplianceRecord> deleteRecords(@PathVariable("id") Long complianceId)
 	{
+		log.info("DELETE /delete/id Compliance Record Delete request hit");
 		return ResponseEntity.ok(complianceService.deleteById(complianceId));
 	}
 }
