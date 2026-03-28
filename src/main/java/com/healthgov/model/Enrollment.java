@@ -2,6 +2,8 @@ package com.healthgov.model;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,6 +25,7 @@ public class Enrollment {
 
 	@ManyToOne
 	@JoinColumn(name = "programId")
+	@JsonIgnore
 	private HealthProgram program;
 
 	private LocalDate date;
