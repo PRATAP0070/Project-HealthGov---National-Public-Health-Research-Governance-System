@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.healthgov.dto.ComplianceCreateRequest;
+import com.healthgov.dto.ComplianceResponseDTO;
 import com.healthgov.dto.ComplianceUpdateRequest;
 import com.healthgov.enums.ComplianceResult;
 import com.healthgov.enums.ComplianceType;
@@ -36,25 +37,25 @@ public class ComplianceServiceImpl implements ComplianceService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<ComplianceRecord> getAllComplianceRecords() {
+	public List<ComplianceResponseDTO> getAllComplianceRecords() {
 		log.info("Retrived All Compliance Records form the table.");
-		return complianceRepo.findAll();
+		return complianceRepo.findAll().stream().map(this::convertToDto).toList();
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public ComplianceRecord getOneByEntityIdAndType(ComplianceType type, Long entityId) {
+	public ComplianceResponseDTO getOneByEntityIdAndType(ComplianceType type, Long entityId) {
 		validateTypeAndEntityId(type, entityId);
 		ensureTargetExists(type, entityId);
 
 		ComplianceRecord record=complianceRepo.findOneByEntityIdAndType(entityId, type)
 				.orElseThrow(() -> new ResourceNotFoundException("Compliance record not found for type= " + type + " and entityId=" + entityId));
 		log.info("Executed Get Compliance Record By Id function : {}",record);
-		return record;
+		return convertToDto(record);
 	}
 
 	@Override
-	public ComplianceRecord createRecord(ComplianceCreateRequest request) {
+	public ComplianceResponseDTO createRecord(ComplianceCreateRequest request) {
 		if (request == null)
 			throw new ComplianceRequestException("Request body is required.");
 
@@ -78,11 +79,11 @@ public class ComplianceServiceImpl implements ComplianceService {
 		log.info("Created ComplianceRecord id={} type={} entityId={}", saved.getComplianceId(), saved.getType(),
 				saved.getEntityId());
 
-		return saved;
+		return convertToDto(saved);
 	}
 
 	@Override
-	public ComplianceRecord updateExisting(ComplianceType type, Long entityId, ComplianceUpdateRequest dto) {
+	public ComplianceResponseDTO updateExisting(ComplianceType type, Long entityId, ComplianceUpdateRequest dto) {
 		validateTypeAndEntityId(type, entityId);
 		if (dto == null)
 			throw new ComplianceRequestException("Request body is required.");
@@ -102,11 +103,11 @@ public class ComplianceServiceImpl implements ComplianceService {
 		log.info("Updated ComplianceRecord id={} type={} entityId={}", saved.getComplianceId(), saved.getType(),
 				saved.getEntityId());
 
-		return saved;
+		return convertToDto(saved);
 	}
 
 	@Override
-	public ComplianceRecord updateResultByEntityIdAndType(ComplianceType type, Long entityId, String result) {
+	public ComplianceResponseDTO updateResultByEntityIdAndType(ComplianceType type, Long entityId, String result) {
 		validateTypeAndEntityId(type, entityId);
 		ensureTargetExists(type, entityId);
 
@@ -121,11 +122,11 @@ public class ComplianceServiceImpl implements ComplianceService {
 
 		log.info("Compliance Record Updated with new Result : {}",saved);
 
-		return saved;
+		return convertToDto(saved);
 	}
 
 	@Override
-	public ComplianceRecord updateNotesByEntityIdAndType(ComplianceType type, Long entityId, String notes) {
+	public ComplianceResponseDTO updateNotesByEntityIdAndType(ComplianceType type, Long entityId, String notes) {
 		validateTypeAndEntityId(type, entityId);
 		ensureTargetExists(type, entityId);
 
@@ -139,11 +140,11 @@ public class ComplianceServiceImpl implements ComplianceService {
 
 		log.info("Compliance Notes Updates Successfully.. {}",saved);
 
-		return saved;
+		return convertToDto(saved);
 	}
 
 	@Override
-	public ComplianceRecord deleteById(Long Id) {
+	public ComplianceResponseDTO deleteById(Long Id) {
 		if (Id == null)
 			throw new ComplianceRequestException("Compliance Record Not found with Id : " + Id);
 
@@ -152,7 +153,7 @@ public class ComplianceServiceImpl implements ComplianceService {
 
 		complianceRepo.deleteById(Id);
 		log.info("Deleted Compliance Record form the table : {}",existing);
-		return existing;
+		return convertToDto(existing);
 	}
 
 	private void validateTypeAndEntityId(ComplianceType type, Long entityId) {
@@ -198,6 +199,18 @@ public class ComplianceServiceImpl implements ComplianceService {
 		if (!exists) {
 			throw new ResourceNotFoundException("Target not found: " + type + " id=" + entityId);
 		}
+	}
+	
+	private ComplianceResponseDTO convertToDto(ComplianceRecord rec)
+	{
+		ComplianceResponseDTO dto=new ComplianceResponseDTO();
+		dto.setComplianceId(rec.getComplianceId());
+		dto.setDate(rec.getDate());
+		dto.setNotes(rec.getNotes());
+		dto.setResult(rec.getResult());
+		dto.setEntityId(rec.getEntityId());
+		dto.setType(rec.getType());
+		return dto;
 	}
 
 }

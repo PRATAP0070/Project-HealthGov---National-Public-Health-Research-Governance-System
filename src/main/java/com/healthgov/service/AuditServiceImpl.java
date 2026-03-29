@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.healthgov.dto.AuditCreateRequest;
+import com.healthgov.dto.AuditReponseDTO;
 import com.healthgov.dto.AuditUpdateRequest;
 import com.healthgov.enums.AuditStatus;
 import com.healthgov.enums.UserRole;
@@ -39,62 +40,59 @@ public class AuditServiceImpl implements AuditService {
 	private final GrantsRepository grantsRepo;
 	private static final Logger log = LoggerFactory.getLogger(AuditServiceImpl.class);
 
-
 	@Override
-	public List<Audit> getAllAudits() {
-		return auditRepo.findAll();
+	public List<AuditReponseDTO> getAllAudits() {
+		return auditRepo.findAll().stream().map(this::convertToDto).toList();
 	}
-	
-	
+
 	@Override
-	public Audit createAudit(AuditCreateRequest request) {
+	public AuditReponseDTO createAudit(AuditCreateRequest request) {
 
-	    Users officer = usersRepo.findByUserIdAndRole(request.getOfficerId(), UserRole.COMPLIANCE)
-	            .orElseThrow(() -> new ResourceNotFoundException(
-	                    "Enter only compliance officer id. Compliance Officer not found: id=" + request.getOfficerId()));
+		Users officer = usersRepo.findByUserIdAndRole(request.getOfficerId(), UserRole.COMPLIANCE)
+				.orElseThrow(() -> new ResourceNotFoundException(
+						"Enter only compliance officer id. Compliance Officer not found: id="
+								+ request.getOfficerId()));
 
-	    String scope = request.getScope().trim();
-	    validateAndEnsureScopeTargetExists(scope);
-        
-	    // DUPLICATE CHECK (officer + scope)
-	    if (auditRepo.existsByOfficer_UserIdAndScopeIgnoreCase(officer.getUserId(), scope)) {
-	        throw new AuditRequestException(
-	                "Duplicate audit: audit already exists for officerId=" + officer.getUserId() + " and scope=" + scope);
-	    }
+		String scope = request.getScope().trim();
+		validateAndEnsureScopeTargetExists(scope);
 
-	    LocalDate date = (request.getDate() != null) ? request.getDate() : LocalDate.now();
-	    if (date.isAfter(LocalDate.now())) {
-	        throw new AuditRequestException("Audit date cannot be in the future.");
-	    }
+		// DUPLICATE CHECK (officer + scope)
+		if (auditRepo.existsByOfficer_UserIdAndScopeIgnoreCase(officer.getUserId(), scope)) {
+			throw new AuditRequestException("Duplicate audit: audit already exists for officerId=" + officer.getUserId()
+					+ " and scope=" + scope);
+		}
 
-	    AuditStatus status = (request.getStatus() != null) ? request.getStatus() : AuditStatus.SCHEDULED;
+		LocalDate date = (request.getDate() != null) ? request.getDate() : LocalDate.now();
+		if (date.isAfter(LocalDate.now())) {
+			throw new AuditRequestException("Audit date cannot be in the future.");
+		}
 
-	    if (request.getFindings() == null || request.getFindings().isBlank()) {
-	        throw new AuditRequestException("findings is required.");
-	    }
+		AuditStatus status = (request.getStatus() != null) ? request.getStatus() : AuditStatus.SCHEDULED;
 
-	    Audit audit = new Audit();
-	    audit.setOfficer(officer);
-	    audit.setScope(scope);
-	    audit.setFindings(request.getFindings().trim());
-	    audit.setDate(date);
-	    audit.setStatus(status);
+		if (request.getFindings() == null || request.getFindings().isBlank()) {
+			throw new AuditRequestException("findings is required.");
+		}
 
-	    try {
-	        Audit saved = auditRepo.save(audit);
-	        log.info("AUDIT_CREATE Audit(auditId={}, officerId={}, scope={})",
-	                saved.getAuditId(), officer.getUserId(), saved.getScope());
-	        return saved;
-	    } catch (org.springframework.dao.DataIntegrityViolationException ex) {
-	        throw new AuditRequestException(
-	                "Duplicate audit: audit already exists for officerId=" + officer.getUserId() + " and scope=" + scope);
-	    }
+		Audit audit = new Audit();
+		audit.setOfficer(officer);
+		audit.setScope(scope);
+		audit.setFindings(request.getFindings().trim());
+		audit.setDate(date);
+		audit.setStatus(status);
+
+		try {
+			Audit saved = auditRepo.save(audit);
+			log.info("AUDIT_CREATE Audit(auditId={}, officerId={}, scope={})", saved.getAuditId(), officer.getUserId(),
+					saved.getScope());
+			return convertToDto(saved);
+		} catch (org.springframework.dao.DataIntegrityViolationException ex) {
+			throw new AuditRequestException("Duplicate audit: audit already exists for officerId=" + officer.getUserId()
+					+ " and scope=" + scope);
+		}
 	}
-	
-	
 
 	@Override
-	public Audit updateAudit(Long auditId, AuditUpdateRequest request) {
+	public AuditReponseDTO updateAudit(Long auditId, AuditUpdateRequest request) {
 		if (auditId == null)
 			throw new AuditRequestException("auditId is required.");
 
@@ -109,13 +107,13 @@ public class AuditServiceImpl implements AuditService {
 
 		Audit saved = auditRepo.save(existing);
 
-		log.info("Audit Record updated Successfully {}",saved);
+		log.info("Audit Record updated Successfully {}", saved);
 
-		return saved;
+		return convertToDto(saved);
 	}
 
 	@Override
-	public Audit updateStatus(Long auditId, String status) {
+	public AuditReponseDTO updateStatus(Long auditId, String status) {
 		if (auditId == null)
 			throw new AuditRequestException("auditId is required.");
 		AuditStatus parsed = parseStatusOrThrow(status);
@@ -126,23 +124,22 @@ public class AuditServiceImpl implements AuditService {
 		existing.setStatus(parsed);
 		Audit saved = auditRepo.save(existing);
 
-		log.info("AUDIT Status updated Successfully. {}",saved);
+		log.info("AUDIT Status updated Successfully. {}", saved);
 
-		return saved;
+		return convertToDto(saved);
 	}
-	
+
 	@Override
-	public List<Audit> getAllAuditsByOfficer(Long officerId) {
-		
-		if(officerId==null)
+	public List<AuditReponseDTO> getAllAuditsByOfficer(Long officerId) {
+
+		if (officerId == null)
 			throw new AuditRequestException("Officer Id is required.");
-		
-		return auditRepo.findByOfficer_UserId(officerId);
+
+		return auditRepo.findByOfficer_UserId(officerId).stream().map(this::convertToDto).toList();
 	}
 
-
 	@Override
-	public Audit updateFindings(Long auditId, String findings) {
+	public AuditReponseDTO updateFindings(Long auditId, String findings) {
 		if (auditId == null)
 			throw new AuditRequestException("auditId is required.");
 		if (findings == null || findings.isBlank())
@@ -154,22 +151,22 @@ public class AuditServiceImpl implements AuditService {
 		existing.setFindings(findings.trim());
 		Audit saved = auditRepo.save(existing);
 
-		log.info("AUDIT findings updated Successfully {}",saved);
+		log.info("AUDIT findings updated Successfully {}", saved);
 
-		return saved;
+		return convertToDto(saved);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public Audit getAudit(Long auditId) {
+	public AuditReponseDTO getAudit(Long auditId) {
 		if (auditId == null)
 			throw new AuditRequestException("auditId is required.");
-		
-		log.info("Found Auidt in the Database with ID {}",auditId);
-		return auditRepo.findById(auditId)
-				.orElseThrow(() -> new ResourceNotFoundException("Audit not found: id=" + auditId));
-	}
 
+		log.info("Found Auidt in the Database with ID {}", auditId);
+		Audit audit=auditRepo.findById(auditId)
+				.orElseThrow(() -> new ResourceNotFoundException("Audit not found: id=" + auditId));
+		return convertToDto(audit);
+	}
 
 	private AuditStatus parseStatusOrThrow(String status) {
 		if (status == null || status.isBlank()) {
@@ -183,7 +180,6 @@ public class AuditServiceImpl implements AuditService {
 					"Invalid status. Allowed: SCHEDULED, IN_REVIEW, COMPLETED, FOLLOW_UP_REQUIRED.");
 		}
 	}
-	
 
 	private void validateAndEnsureScopeTargetExists(String scope) {
 		String[] parts = scope.split(":", 2);
@@ -218,5 +214,17 @@ public class AuditServiceImpl implements AuditService {
 		}
 	}
 
-	
+	private AuditReponseDTO convertToDto(Audit a) {
+		AuditReponseDTO dto = new AuditReponseDTO();
+		dto.setAuditId(a.getAuditId());
+		dto.setScope(a.getScope());
+		dto.setDate(a.getDate());
+		dto.setFindings(a.getFindings());
+		dto.setStatus(a.getStatus());
+		dto.setOfficer(a.getOfficer());
+
+		return dto;
+
+	}
+
 }
