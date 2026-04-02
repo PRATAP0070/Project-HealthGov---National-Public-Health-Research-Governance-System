@@ -48,10 +48,10 @@ public class ComplianceServiceImpl implements ComplianceService {
 		validateTypeAndEntityId(type, entityId);
 		ensureTargetExists(type, entityId);
 
-		ComplianceRecord record=complianceRepo.findOneByEntityIdAndType(entityId, type)
+		ComplianceRecord compRecord=complianceRepo.findOneByEntityIdAndType(entityId, type)
 				.orElseThrow(() -> new ResourceNotFoundException("Compliance record not found for type= " + type + " and entityId=" + entityId));
-		log.info("Executed Get Compliance Record By Id function : {}",record);
-		return convertToDto(record);
+		log.info("Executed Get Compliance Record By Id function : {}",compRecord);
+		return convertToDto(compRecord);
 	}
 
 	@Override
@@ -144,14 +144,14 @@ public class ComplianceServiceImpl implements ComplianceService {
 	}
 
 	@Override
-	public ComplianceResponseDTO deleteById(Long Id) {
-		if (Id == null)
-			throw new ComplianceRequestException("Compliance Record Not found with Id : " + Id);
+	public ComplianceResponseDTO deleteById(Long id) {
+		if (id == null)
+			throw new ComplianceRequestException("Compliance Record Not found with Id : " + id);
 
-		ComplianceRecord existing = complianceRepo.findById(Id)
-				.orElseThrow(() -> new ResourceNotFoundException("Compliance record not found with ID:" + Id));
+		ComplianceRecord existing = complianceRepo.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Compliance record not found with ID:" + id));
 
-		complianceRepo.deleteById(Id);
+		complianceRepo.deleteById(id);
 		log.info("Deleted Compliance Record form the table : {}",existing);
 		return convertToDto(existing);
 	}

@@ -5,7 +5,6 @@ import java.util.List;
 import com.healthgov.dto.AuditCreateRequest;
 import com.healthgov.dto.AuditReponseDTO;
 import com.healthgov.dto.AuditUpdateRequest;
-import com.healthgov.model.Audit;
 
 public interface AuditService {
 

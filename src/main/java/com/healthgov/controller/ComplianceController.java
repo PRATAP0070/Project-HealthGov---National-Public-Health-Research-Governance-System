@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,7 +21,6 @@ import com.healthgov.dto.ComplianceCreateRequest;
 import com.healthgov.dto.ComplianceResponseDTO;
 import com.healthgov.dto.ComplianceUpdateRequest;
 import com.healthgov.enums.ComplianceType;
-import com.healthgov.model.ComplianceRecord;
 import com.healthgov.service.ComplianceService;
 
 import jakarta.validation.Valid;
@@ -42,15 +40,16 @@ public class ComplianceController {
 	@GetMapping("/all")
 	public ResponseEntity<List<ComplianceResponseDTO>> listAll() {
 		log.info("GET /api/v1/compliance-records");
-		List<ComplianceResponseDTO > response=complianceService.getAllComplianceRecords();
+		List<ComplianceResponseDTO> response = complianceService.getAllComplianceRecords();
 		return ResponseEntity.ok(response);
 	}
 
 	@GetMapping("/{type}/{entityId}")
-	public ResponseEntity<ComplianceResponseDTO> getOne(@PathVariable ComplianceType type, @PathVariable Long entityId) {
+	public ResponseEntity<ComplianceResponseDTO> getOne(@PathVariable ComplianceType type,
+			@PathVariable Long entityId) {
 
 		log.info("GET /api/v1/compliance-records/{}/{}", type, entityId);
-		ComplianceResponseDTO response=complianceService.getOneByEntityIdAndType(type, entityId);
+		ComplianceResponseDTO response = complianceService.getOneByEntityIdAndType(type, entityId);
 		return ResponseEntity.ok(response);
 	}
 
@@ -74,8 +73,8 @@ public class ComplianceController {
 
 	// UPDATE RESULT ONLY (by type + entityId)
 	@PatchMapping("/{type}/{entityId}/result")
-	public ResponseEntity<ComplianceResponseDTO> patchResult(@PathVariable ComplianceType type, @PathVariable Long entityId,
-			@RequestParam("result") String result) {
+	public ResponseEntity<ComplianceResponseDTO> patchResult(@PathVariable ComplianceType type,
+			@PathVariable Long entityId, @RequestParam("result") String result) {
 
 		log.info("PATCH /api/v1/compliance-records/{}/{}/result", type, entityId);
 		return ResponseEntity.ok(complianceService.updateResultByEntityIdAndType(type, entityId, result));
@@ -83,16 +82,15 @@ public class ComplianceController {
 
 	// UPDATE NOTES ONLY (by type + entityId)
 	@PatchMapping("/{type}/{entityId}/notes")
-	public ResponseEntity<ComplianceResponseDTO> patchNotes(@PathVariable ComplianceType type, @PathVariable Long entityId,
-			@RequestParam("notes") String notes) {
+	public ResponseEntity<ComplianceResponseDTO> patchNotes(@PathVariable ComplianceType type,
+			@PathVariable Long entityId, @RequestParam("notes") String notes) {
 
 		log.info("PATCH /api/v1/compliance-records/{}/{}/notes", type, entityId);
 		return ResponseEntity.ok(complianceService.updateNotesByEntityIdAndType(type, entityId, notes));
 	}
-	
+
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<ComplianceResponseDTO> deleteRecords(@PathVariable("id") Long complianceId)
-	{
+	public ResponseEntity<ComplianceResponseDTO> deleteRecords(@PathVariable("id") Long complianceId) {
 		log.info("DELETE /delete/id Compliance Record Delete request hit");
 		return ResponseEntity.ok(complianceService.deleteById(complianceId));
 	}

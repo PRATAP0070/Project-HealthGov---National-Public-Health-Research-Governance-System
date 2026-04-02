@@ -6,7 +6,6 @@ import com.healthgov.dto.ComplianceCreateRequest;
 import com.healthgov.dto.ComplianceResponseDTO;
 import com.healthgov.dto.ComplianceUpdateRequest;
 import com.healthgov.enums.ComplianceType;
-import com.healthgov.model.ComplianceRecord;
 
 public interface ComplianceService {
 
@@ -21,6 +20,6 @@ public interface ComplianceService {
 	ComplianceResponseDTO updateResultByEntityIdAndType(ComplianceType type, Long entityId, String result);
 
 	ComplianceResponseDTO updateNotesByEntityIdAndType(ComplianceType type, Long entityId, String notes);
-	
-	ComplianceResponseDTO deleteById(Long Id);
+
+	ComplianceResponseDTO deleteById(Long id);
 }

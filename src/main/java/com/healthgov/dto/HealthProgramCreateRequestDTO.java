@@ -1,7 +1,6 @@
 package com.healthgov.dto;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 import com.healthgov.enums.ProgramStatus;
 

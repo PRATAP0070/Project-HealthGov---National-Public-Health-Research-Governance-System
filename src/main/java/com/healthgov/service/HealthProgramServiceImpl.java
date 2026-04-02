@@ -1,6 +1,5 @@
 package com.healthgov.service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -89,16 +88,15 @@ public class HealthProgramServiceImpl implements HealthProgramService {
 	private HealthProgramResponseDTO toDtoWithDetails(HealthProgram p) {
 		HealthProgramResponseDTO dto = toDto(p);
 
-		dto.setEnrollments(
-				p.getEnrollments().stream().map(e -> {
-					HealthProgramResponseDTO.EnrollmentDTO ed = new HealthProgramResponseDTO.EnrollmentDTO();
-					ed.setEnrollmentId(e.getEnrollmentId());
-					ed.setCitizenId(e.getCitizen() != null ? e.getCitizen().getCitizenId() : null);
-					ed.setCitizenName(e.getCitizen() != null ? e.getCitizen().getName() : null);
-					ed.setEnrolledDate(e.getDate());
-					ed.setStatus(e.getStatus());
-					return ed;
-				}).collect(Collectors.toList()));
+		dto.setEnrollments(p.getEnrollments().stream().map(e -> {
+			HealthProgramResponseDTO.EnrollmentDTO ed = new HealthProgramResponseDTO.EnrollmentDTO();
+			ed.setEnrollmentId(e.getEnrollmentId());
+			ed.setCitizenId(e.getCitizen() != null ? e.getCitizen().getCitizenId() : null);
+			ed.setCitizenName(e.getCitizen() != null ? e.getCitizen().getName() : null);
+			ed.setEnrolledDate(e.getDate());
+			ed.setStatus(e.getStatus());
+			return ed;
+		}).collect(Collectors.toList()));
 
 		dto.setResources(p.getResources().stream().map(r -> {
 			HealthProgramResponseDTO.ResourceDTO rd = new HealthProgramResponseDTO.ResourceDTO();
@@ -109,16 +107,15 @@ public class HealthProgramServiceImpl implements HealthProgramService {
 			return rd;
 		}).collect(Collectors.toList()));
 
-		dto.setInfrastructures(
-				 p.getInfrastructures().stream().map(i -> {
-					HealthProgramResponseDTO.InfrastructureDTO idto = new HealthProgramResponseDTO.InfrastructureDTO();
-					idto.setInfraId(i.getInfraId());
-					idto.setType(i.getType());
-					idto.setLocation(i.getLocation());
-					idto.setCapacity(i.getCapacity());
-					idto.setStatus(i.getStatus());
-					return idto;
-				}).collect(Collectors.toList()));
+		dto.setInfrastructures(p.getInfrastructures().stream().map(i -> {
+			HealthProgramResponseDTO.InfrastructureDTO idto = new HealthProgramResponseDTO.InfrastructureDTO();
+			idto.setInfraId(i.getInfraId());
+			idto.setType(i.getType());
+			idto.setLocation(i.getLocation());
+			idto.setCapacity(i.getCapacity());
+			idto.setStatus(i.getStatus());
+			return idto;
+		}).collect(Collectors.toList()));
 
 		return dto;
 	}
