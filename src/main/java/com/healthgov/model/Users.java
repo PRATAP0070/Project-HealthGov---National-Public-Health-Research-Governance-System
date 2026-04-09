@@ -46,7 +46,7 @@ public class Users {
     private String status;
  
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<AuditLog> auditLogs = new ArrayList<>();;
+    private List<AuditLog> auditLogs = new ArrayList<>();
  
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Notification> notifications = new ArrayList<>();

@@ -1,0 +1,204 @@
+2026-04-02T08:46:48.290+05:30  WARN 5900 --- [Health_Gov] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=9h21m5s223ms235µs800ns).
+2026-04-02T08:56:33.542+05:30  INFO 35272 --- [Health_Gov] [restartedMain] com.healthgov.HealthGovApplication       : Starting HealthGovApplication using Java 21.0.8 with PID 35272 (C:\Users\2481285\Desktop\Java_FSE_Project\Project-HealthGov---National-Public-Health-Research-Governance-System\target\classes started by 2481285 in C:\Users\2481285\Desktop\Java_FSE_Project\Project-HealthGov---National-Public-Health-Research-Governance-System)
+2026-04-02T08:56:33.547+05:30  INFO 35272 --- [Health_Gov] [restartedMain] com.healthgov.HealthGovApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-04-02T08:56:33.624+05:30  INFO 35272 --- [Health_Gov] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-04-02T08:56:33.624+05:30  INFO 35272 --- [Health_Gov] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-04-02T08:56:38.687+05:30  INFO 35272 --- [Health_Gov] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-02T08:56:38.855+05:30  INFO 35272 --- [Health_Gov] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 146 ms. Found 10 JPA repository interfaces.
+2026-04-02T08:56:40.539+05:30  INFO 35272 --- [Health_Gov] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 1111 (http)
+2026-04-02T08:56:40.620+05:30  INFO 35272 --- [Health_Gov] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-02T08:56:40.622+05:30  INFO 35272 --- [Health_Gov] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-04-02T08:56:40.874+05:30  INFO 35272 --- [Health_Gov] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 7249 ms
+2026-04-02T08:56:42.500+05:30  INFO 35272 --- [Health_Gov] [restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-04-02T08:56:42.989+05:30  INFO 35272 --- [Health_Gov] [restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.4.Final
+2026-04-02T08:56:47.253+05:30  INFO 35272 --- [Health_Gov] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-02T08:56:47.960+05:30  INFO 35272 --- [Health_Gov] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-02T08:56:51.056+05:30  INFO 35272 --- [Health_Gov] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2b0e1231
+2026-04-02T08:56:51.079+05:30  INFO 35272 --- [Health_Gov] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-02T08:56:51.419+05:30  WARN 35272 --- [Health_Gov] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-04-02T08:56:51.518+05:30  INFO 35272 --- [Health_Gov] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/healthgov_db]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.44
+	Default catalog/schema: healthgov_db/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-04-02T08:56:59.466+05:30  INFO 35272 --- [Health_Gov] [restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-02T08:57:02.189+05:30  INFO 35272 --- [Health_Gov] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-02T08:57:02.691+05:30  INFO 35272 --- [Health_Gov] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-04-02T08:57:04.643+05:30  WARN 35272 --- [Health_Gov] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-02T08:57:06.948+05:30  INFO 35272 --- [Health_Gov] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 13 endpoints beneath base path '/actuator'
+2026-04-02T08:57:07.295+05:30  INFO 35272 --- [Health_Gov] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 1111 (http) with context path '/'
+2026-04-02T08:57:07.321+05:30  INFO 35272 --- [Health_Gov] [restartedMain] com.healthgov.HealthGovApplication       : Started HealthGovApplication in 34.348 seconds (process running for 35.946)
+2026-04-02T08:57:07.340+05:30  WARN 35272 --- [Health_Gov] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-04-02T08:57:07.343+05:30  WARN 35272 --- [Health_Gov] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-04-02T08:57:08.795+05:30  INFO 35272 --- [Health_Gov] [RMI TCP Connection(10)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-02T08:57:08.795+05:30  INFO 35272 --- [Health_Gov] [RMI TCP Connection(10)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-04-02T08:57:08.803+05:30  INFO 35272 --- [Health_Gov] [RMI TCP Connection(10)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2026-04-02T08:59:53.238+05:30  INFO 18708 --- [Health_Gov] [main] c.healthgov.HealthGovApplicationTests    : Starting HealthGovApplicationTests using Java 21.0.8 with PID 18708 (started by 2481285 in C:\Users\2481285\Desktop\Java_FSE_Project\Project-HealthGov---National-Public-Health-Research-Governance-System)
+2026-04-02T08:59:53.243+05:30  INFO 18708 --- [Health_Gov] [main] c.healthgov.HealthGovApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2026-04-02T08:59:55.436+05:30  INFO 18708 --- [Health_Gov] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-02T08:59:55.592+05:30  INFO 18708 --- [Health_Gov] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 128 ms. Found 10 JPA repository interfaces.
+2026-04-02T08:59:56.886+05:30  INFO 18708 --- [Health_Gov] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-04-02T08:59:57.147+05:30  INFO 18708 --- [Health_Gov] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.4.Final
+2026-04-02T08:59:57.973+05:30  INFO 18708 --- [Health_Gov] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-02T08:59:58.017+05:30  INFO 18708 --- [Health_Gov] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-02T08:59:58.515+05:30  INFO 18708 --- [Health_Gov] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7282f7b1
+2026-04-02T08:59:58.520+05:30  INFO 18708 --- [Health_Gov] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-02T08:59:58.599+05:30  WARN 18708 --- [Health_Gov] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-04-02T08:59:58.638+05:30  INFO 18708 --- [Health_Gov] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/healthgov_db]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.44
+	Default catalog/schema: healthgov_db/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-04-02T09:00:00.462+05:30  INFO 18708 --- [Health_Gov] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-02T09:00:01.592+05:30  INFO 18708 --- [Health_Gov] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-02T09:00:01.780+05:30  INFO 18708 --- [Health_Gov] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-04-02T09:00:02.803+05:30  WARN 18708 --- [Health_Gov] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-02T09:00:04.492+05:30  INFO 18708 --- [Health_Gov] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 13 endpoints beneath base path '/actuator'
+2026-04-02T09:00:04.590+05:30  INFO 18708 --- [Health_Gov] [main] c.healthgov.HealthGovApplicationTests    : Started HealthGovApplicationTests in 11.908 seconds (process running for 15.368)
+2026-04-02T09:00:04.704+05:30  WARN 18708 --- [Health_Gov] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-04-02T09:00:04.704+05:30  WARN 18708 --- [Health_Gov] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-04-02T09:00:17.400+05:30  INFO 18708 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Validating the compliance type before updatring the status
+2026-04-02T09:00:17.400+05:30  INFO 18708 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Validating the Entity ID and It's Type pair in respective table
+2026-04-02T09:00:17.414+05:30  INFO 18708 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Validating the compliance result based on the enums
+2026-04-02T09:00:17.440+05:30  INFO 18708 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Deleted Compliance Record form the table : com.healthgov.model.ComplianceRecord@260d5273
+2026-04-02T09:00:17.478+05:30  INFO 18708 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Validating the compliance type before updatring the status
+2026-04-02T09:00:17.478+05:30  INFO 18708 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Validating the Entity ID and It's Type pair in respective table
+2026-04-02T09:00:17.499+05:30  INFO 18708 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Validating the compliance type before updatring the status
+2026-04-02T09:00:17.500+05:30  INFO 18708 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Validating the Entity ID and It's Type pair in respective table
+2026-04-02T09:00:17.503+05:30  INFO 18708 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Validating the compliance result based on the enums
+2026-04-02T09:00:17.504+05:30  INFO 18708 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Data Validation Invoked
+2026-04-02T09:00:17.505+05:30  INFO 18708 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Updated ComplianceRecord id=8 type=GRANT entityId=3
+2026-04-02T09:00:17.512+05:30  INFO 18708 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Validating the compliance type before updatring the status
+2026-04-02T09:00:17.513+05:30  INFO 18708 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Validating the Entity ID and It's Type pair in respective table
+2026-04-02T09:00:17.514+05:30  INFO 18708 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Validating the compliance result based on the enums
+2026-04-02T09:00:17.514+05:30  INFO 18708 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Data Validation Invoked
+2026-04-02T09:00:17.515+05:30  INFO 18708 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Created ComplianceRecord id=10 type=PROGRAM entityId=1
+2026-04-02T09:00:17.524+05:30  INFO 18708 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Validating the compliance type before updatring the status
+2026-04-02T09:00:17.525+05:30  INFO 18708 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Validating the Entity ID and It's Type pair in respective table
+2026-04-02T09:00:17.527+05:30  INFO 18708 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Executed Get Compliance Record By Id function : com.healthgov.model.ComplianceRecord@79200f8
+2026-04-02T09:00:17.555+05:30  INFO 18708 --- [Health_Gov] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-04-02T09:00:17.563+05:30  INFO 18708 --- [Health_Gov] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-04-02T09:00:17.589+05:30  INFO 18708 --- [Health_Gov] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-04-02T09:01:59.356+05:30  INFO 35272 --- [Health_Gov] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 89 class path changes (0 additions, 89 deletions, 0 modifications)
+2026-04-02T09:01:59.373+05:30  INFO 35272 --- [Health_Gov] [Thread-1] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-04-02T09:01:59.398+05:30  INFO 35272 --- [Health_Gov] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-04-02T09:01:59.423+05:30  INFO 35272 --- [Health_Gov] [Thread-1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-04-02T09:01:59.452+05:30  INFO 35272 --- [Health_Gov] [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-04-02T09:01:59.486+05:30  INFO 35272 --- [Health_Gov] [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-04-02T09:02:08.414+05:30  INFO 35272 --- [Health_Gov] [restartedMain] com.healthgov.HealthGovApplication       : Starting HealthGovApplication using Java 21.0.8 with PID 35272 (C:\Users\2481285\Desktop\Java_FSE_Project\Project-HealthGov---National-Public-Health-Research-Governance-System\target\classes started by 2481285 in C:\Users\2481285\Desktop\Java_FSE_Project\Project-HealthGov---National-Public-Health-Research-Governance-System)
+2026-04-02T09:02:08.415+05:30  INFO 35272 --- [Health_Gov] [restartedMain] com.healthgov.HealthGovApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-04-02T09:02:09.446+05:30  INFO 35272 --- [Health_Gov] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-02T09:02:09.600+05:30  INFO 35272 --- [Health_Gov] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 151 ms. Found 10 JPA repository interfaces.
+2026-04-02T09:02:09.929+05:30  INFO 35272 --- [Health_Gov] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 1111 (http)
+2026-04-02T09:02:09.931+05:30  INFO 35272 --- [Health_Gov] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-02T09:02:09.931+05:30  INFO 35272 --- [Health_Gov] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-04-02T09:02:09.994+05:30  INFO 35272 --- [Health_Gov] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1575 ms
+2026-04-02T09:02:10.146+05:30  INFO 35272 --- [Health_Gov] [restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-04-02T09:02:10.257+05:30  INFO 35272 --- [Health_Gov] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-02T09:02:10.261+05:30  INFO 35272 --- [Health_Gov] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2026-04-02T09:02:10.317+05:30  INFO 35272 --- [Health_Gov] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3f4ce1c9
+2026-04-02T09:02:10.318+05:30  INFO 35272 --- [Health_Gov] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2026-04-02T09:02:10.321+05:30  WARN 35272 --- [Health_Gov] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-04-02T09:02:10.323+05:30  INFO 35272 --- [Health_Gov] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/healthgov_db]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.44
+	Default catalog/schema: healthgov_db/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-04-02T09:02:11.172+05:30  INFO 35272 --- [Health_Gov] [restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-02T09:02:11.352+05:30  INFO 35272 --- [Health_Gov] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-02T09:02:12.092+05:30  WARN 35272 --- [Health_Gov] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-02T09:02:12.945+05:30  INFO 35272 --- [Health_Gov] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 13 endpoints beneath base path '/actuator'
+2026-04-02T09:02:13.017+05:30  INFO 35272 --- [Health_Gov] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 1111 (http) with context path '/'
+2026-04-02T09:02:13.031+05:30  INFO 35272 --- [Health_Gov] [restartedMain] com.healthgov.HealthGovApplication       : Started HealthGovApplication in 4.659 seconds (process running for 341.656)
+2026-04-02T09:02:13.047+05:30  WARN 35272 --- [Health_Gov] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-04-02T09:02:13.048+05:30  WARN 35272 --- [Health_Gov] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-04-02T09:02:13.052+05:30  INFO 35272 --- [Health_Gov] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-04-02T09:02:58.299+05:30  INFO 26024 --- [Health_Gov] [main] c.healthgov.HealthGovApplicationTests    : Starting HealthGovApplicationTests using Java 21.0.8 with PID 26024 (started by 2481285 in C:\Users\2481285\Desktop\Java_FSE_Project\Project-HealthGov---National-Public-Health-Research-Governance-System)
+2026-04-02T09:02:58.303+05:30  INFO 26024 --- [Health_Gov] [main] c.healthgov.HealthGovApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2026-04-02T09:03:01.570+05:30  INFO 26024 --- [Health_Gov] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-02T09:03:01.761+05:30  INFO 26024 --- [Health_Gov] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 164 ms. Found 10 JPA repository interfaces.
+2026-04-02T09:03:03.653+05:30  INFO 26024 --- [Health_Gov] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-04-02T09:03:03.931+05:30  INFO 26024 --- [Health_Gov] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.4.Final
+2026-04-02T09:03:05.577+05:30  INFO 26024 --- [Health_Gov] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-02T09:03:05.638+05:30  INFO 26024 --- [Health_Gov] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-02T09:03:06.699+05:30  INFO 26024 --- [Health_Gov] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2a191f83
+2026-04-02T09:03:06.708+05:30  INFO 26024 --- [Health_Gov] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-02T09:03:06.955+05:30  WARN 26024 --- [Health_Gov] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-04-02T09:03:07.058+05:30  INFO 26024 --- [Health_Gov] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/healthgov_db]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.44
+	Default catalog/schema: healthgov_db/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-04-02T09:03:09.895+05:30  INFO 26024 --- [Health_Gov] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-02T09:03:11.079+05:30  INFO 26024 --- [Health_Gov] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-02T09:03:11.327+05:30  INFO 26024 --- [Health_Gov] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-04-02T09:03:12.632+05:30  WARN 26024 --- [Health_Gov] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-02T09:03:15.694+05:30  INFO 26024 --- [Health_Gov] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 13 endpoints beneath base path '/actuator'
+2026-04-02T09:03:15.950+05:30  INFO 26024 --- [Health_Gov] [main] c.healthgov.HealthGovApplicationTests    : Started HealthGovApplicationTests in 18.303 seconds (process running for 21.668)
+2026-04-02T09:03:16.148+05:30  WARN 26024 --- [Health_Gov] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-04-02T09:03:16.148+05:30  WARN 26024 --- [Health_Gov] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-04-02T09:03:27.952+05:30  INFO 26024 --- [Health_Gov] [main] com.healthgov.service.AuditServiceImpl   : Audit Record updated Successfully com.healthgov.model.Audit@72c50c9f
+2026-04-02T09:03:28.045+05:30  INFO 26024 --- [Health_Gov] [main] com.healthgov.service.AuditServiceImpl   : AUDIT Status updated Successfully. com.healthgov.model.Audit@37ea5612
+2026-04-02T09:03:28.064+05:30  INFO 26024 --- [Health_Gov] [main] com.healthgov.service.AuditServiceImpl   : AUDIT_CREATE Audit(auditId=100, officerId=1, scope=PROGRAM:10)
+2026-04-02T09:03:28.101+05:30  INFO 26024 --- [Health_Gov] [main] com.healthgov.service.AuditServiceImpl   : AUDIT findings updated Successfully com.healthgov.model.Audit@61e33118
+2026-04-02T09:03:28.126+05:30  INFO 26024 --- [Health_Gov] [main] com.healthgov.service.AuditServiceImpl   : Found Auidt in the Database with ID 3
+2026-04-02T09:03:28.390+05:30  INFO 26024 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Validating the compliance type before updatring the status
+2026-04-02T09:03:28.392+05:30  INFO 26024 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Validating the Entity ID and It's Type pair in respective table
+2026-04-02T09:03:28.393+05:30  INFO 26024 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Validating the compliance result based on the enums
+2026-04-02T09:03:28.400+05:30  INFO 26024 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Deleted Compliance Record form the table : com.healthgov.model.ComplianceRecord@1b2234a5
+2026-04-02T09:03:28.408+05:30  INFO 26024 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Validating the compliance type before updatring the status
+2026-04-02T09:03:28.408+05:30  INFO 26024 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Validating the Entity ID and It's Type pair in respective table
+2026-04-02T09:03:28.424+05:30  INFO 26024 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Validating the compliance type before updatring the status
+2026-04-02T09:03:28.425+05:30  INFO 26024 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Validating the Entity ID and It's Type pair in respective table
+2026-04-02T09:03:28.429+05:30  INFO 26024 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Validating the compliance result based on the enums
+2026-04-02T09:03:28.430+05:30  INFO 26024 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Data Validation Invoked
+2026-04-02T09:03:28.431+05:30  INFO 26024 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Updated ComplianceRecord id=8 type=GRANT entityId=3
+2026-04-02T09:03:28.441+05:30  INFO 26024 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Validating the compliance type before updatring the status
+2026-04-02T09:03:28.441+05:30  INFO 26024 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Validating the Entity ID and It's Type pair in respective table
+2026-04-02T09:03:28.442+05:30  INFO 26024 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Validating the compliance result based on the enums
+2026-04-02T09:03:28.443+05:30  INFO 26024 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Data Validation Invoked
+2026-04-02T09:03:28.445+05:30  INFO 26024 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Created ComplianceRecord id=10 type=PROGRAM entityId=1
+2026-04-02T09:03:28.454+05:30  INFO 26024 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Validating the compliance type before updatring the status
+2026-04-02T09:03:28.455+05:30  INFO 26024 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Validating the Entity ID and It's Type pair in respective table
+2026-04-02T09:03:28.457+05:30  INFO 26024 --- [Health_Gov] [main] c.h.service.ComplianceServiceImpl        : Executed Get Compliance Record By Id function : com.healthgov.model.ComplianceRecord@37bdd4b1
+2026-04-02T09:03:28.496+05:30  INFO 26024 --- [Health_Gov] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-04-02T09:03:28.502+05:30  INFO 26024 --- [Health_Gov] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-04-02T09:03:28.538+05:30  INFO 26024 --- [Health_Gov] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-04-02T11:16:46.678+05:30  WARN 35272 --- [Health_Gov] [HikariPool-2:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=15m4s308ms954µs100ns).
+2026-04-02T12:52:42.632+05:30  WARN 35272 --- [Health_Gov] [HikariPool-2:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=1h14m25s576ms343µs500ns).
+2026-04-02T14:01:32.991+05:30  WARN 35272 --- [Health_Gov] [HikariPool-2:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=1h8m50s359ms87µs400ns).
+2026-04-02T15:22:19.447+05:30  WARN 35272 --- [Health_Gov] [HikariPool-2:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=32m15s549ms437µs100ns).
+2026-04-02T15:41:54.839+05:30  WARN 35272 --- [Health_Gov] [HikariPool-2:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=11m35s258ms595µs800ns).
+2026-04-02T16:11:42.323+05:30  WARN 35272 --- [Health_Gov] [HikariPool-2:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=18m17s262ms393µs100ns).
+2026-04-02T17:23:13.863+05:30  WARN 35272 --- [Health_Gov] [HikariPool-2:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=54m31s277ms265µs900ns).
+2026-04-02T18:30:48.797+05:30  WARN 35272 --- [Health_Gov] [HikariPool-2:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=54m4s708ms388µs201ns).
+2026-04-02T21:19:00.345+05:30  WARN 35272 --- [Health_Gov] [HikariPool-2:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=2h48m11s554ms734µs300ns).
+2026-04-02T22:11:55.406+05:30  WARN 35272 --- [Health_Gov] [HikariPool-2:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=4m54s359ms190µs600ns).

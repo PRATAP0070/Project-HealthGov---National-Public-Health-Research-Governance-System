@@ -2,29 +2,44 @@ package com.healthgov.model;
 
 import java.time.LocalDate;
 
+import com.healthgov.enums.GrantStatus;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class GrantApplication {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long applicationId;
 
-	@ManyToOne
-	@JoinColumn(name = "researcherId")
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "researcher_Id", nullable = false)
 	private Users researcher;
 
-	@ManyToOne
-	@JoinColumn(name = "projectId")
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "project_Id", nullable = false)
 	private ResearchProject project;
 
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private GrantStatus status;
+
+	@Column(name = "submitted_date", nullable = false)
 	private LocalDate submittedDate;
-	private String status;
 }

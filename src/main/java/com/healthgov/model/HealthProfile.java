@@ -20,7 +20,7 @@ public class HealthProfile {
     @JoinColumn(name = "citizenId")
     private Citizen citizen;
  
-    @Lob ////recheck
+    @Lob 
     private String medicalHistoryJSON;
     private String allergies;
     private String status;

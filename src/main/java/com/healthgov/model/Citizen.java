@@ -3,6 +3,7 @@ package com.healthgov.model;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.healthgov.enums.Gender;
 
 import jakarta.persistence.CascadeType;
@@ -38,5 +39,6 @@ public class Citizen {
 	private List<CitizenDocument> documents;
 
 	@OneToMany(mappedBy = "citizen")
+    @JsonIgnore
 	private List<Enrollment> enrollments;
 }

@@ -1,5 +1,6 @@
 package com.healthgov.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.healthgov.enums.InfrastructureType;
 
 import jakarta.persistence.Entity;
@@ -21,6 +22,7 @@ public class Infrastructure {
  
     @ManyToOne
     @JoinColumn(name = "programId")
+    @JsonIgnore
     private HealthProgram program;
  
     @Enumerated(EnumType.STRING)

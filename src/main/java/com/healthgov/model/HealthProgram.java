@@ -1,6 +1,6 @@
 package com.healthgov.model;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import com.healthgov.enums.ProgramStatus;
@@ -17,26 +17,28 @@ import lombok.Data;
 @Entity
 @Data
 public class HealthProgram {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long programId;
-    private String title;
-    private String description;
-    private Date startDate;
-    private Date endDate;
-    private Double budget;
-    @Enumerated(EnumType.STRING)
-    private ProgramStatus status;
- 
-    @OneToMany(mappedBy = "program")
-    private List<Enrollment> enrollments;
- 
-    @OneToMany(mappedBy = "program")
-    private List<Resources> resources;
- 
-    @OneToMany(mappedBy = "program")
-    private List<Infrastructure> infrastructures;
-    
-    
-}
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long programId;
+
+	private String title;
+	private String description;
+
+	private LocalDate startDate;
+	private LocalDate endDate;
+
+	private Double budget;
+
+	@Enumerated(EnumType.STRING)
+	private ProgramStatus status;
+
+	@OneToMany(mappedBy = "program")
+	private List<Enrollment> enrollments;
+
+	@OneToMany(mappedBy = "program")
+	private List<Resources> resources;
+
+	@OneToMany(mappedBy = "program")
+	private List<Infrastructure> infrastructures;
+}
